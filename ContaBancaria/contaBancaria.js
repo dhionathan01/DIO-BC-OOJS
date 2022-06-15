@@ -1,9 +1,9 @@
 class ContaBancaria{
     constructor(agencia = null, numero = null, tipo = null, saldo = null) {
-        this.agencia = agencia;
-        this.numero = numero;
-        this.tipo = tipo;
-        this.saldo = saldo;
+        this._agencia = agencia;
+        this._numero = numero;
+        this._tipo = tipo;
+        this._saldo = saldo;
     }
 
     getAgencia() {
