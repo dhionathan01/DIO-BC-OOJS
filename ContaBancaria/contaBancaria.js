@@ -1,9 +1,9 @@
 class ContaBancaria{
-    constructor() {
-        this.agencia = null;
-        this.numero = null;
-        this.tipo = null;
-        this.saldo = null;
+    constructor(agencia = null, numero = null, tipo = null, saldo = null) {
+        this.agencia = agencia;
+        this.numero = numero;
+        this.tipo = tipo;
+        this.saldo = saldo;
     }
 
     getAgencia() {
@@ -21,7 +21,7 @@ class ContaBancaria{
     };
 
     getTipo() {
-        return this.numero;
+        return this.tipo;
     };
     setTipo(valor) {
         this.tipo = valor;
@@ -61,10 +61,10 @@ class ContaBancaria{
 }
 
 class ContaCorrente extends ContaBancaria{
-    constructor() {
-        super();
-        this.cartaoCredito = null;
-        this.tipo = 'conta corrente';
+    constructor(agencia = null, numero = null, saldo = null, cartaoCredito = null) {
+        super(agencia, numero, saldo);
+        this.cartaoCredito = cartaoCredito;
+        this.tipo = 'corrente';
     };
 
     getCartaoCredito() {
@@ -77,8 +77,11 @@ class ContaCorrente extends ContaBancaria{
 }
 
 class ContaPoupanca extends ContaBancaria{
-    constructor() {
+    constructor(agencia = null, numero = null, saldo = null) {
+        super(agencia, numero, saldo);
+        this.tipo = 'poupança';
     };
+   
 
     sacar(valorDinheiro) {
         try {
@@ -101,6 +104,11 @@ class ContaPoupanca extends ContaBancaria{
 }
 
 class ContaUniversitaria extends ContaBancaria{
+    constructor(agencia = null, numero = null, saldo = null) {
+        super(agencia, numero, saldo);
+        this.tipo = 'universitaria';
+    };
+   
     sacar(valorDinheiro) {
         try {
             if (!valorDinheiro && tipeof(valorDinheiro) != Number) {
@@ -119,19 +127,3 @@ class ContaUniversitaria extends ContaBancaria{
         this.saldo -= valorDinheiro;
     }
 }
-
-let contaBancaria = new ContaBancaria();
-
-contaBancaria.setSaldo(1200);
-console.log(contaBancaria.getSaldo());
-contaBancaria.sacar(300);
-console.log(contaBancaria.getSaldo());
-
-let contaUniv = new ContaUniversitaria();
-
-contaUniv.depositar(4500);
-console.log(contaUniv.getSaldo());
-contaUniv.sacar(800);
-console.log(contaUniv.getSaldo());
-contaUniv.sacar(300);
-console.log(contaUniv.getSaldo());
